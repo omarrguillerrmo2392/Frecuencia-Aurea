@@ -43,7 +43,6 @@
             <div class="decreto-box">
                 <h3>Tu Decreto de Activación:</h3>
                 <p id="res-decreto"></p>
-                <!-- Reproductor de audio -->
                 <audio id="audio-decreto" controls controlsList="nodownload">
                     <source id="source-audio" src="" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
@@ -51,11 +50,21 @@
             </div>
 
             <div class="upsell-box">
-                <p>⚠️ Tu campo energético requiere un anclaje profundo para evitar que el bloqueo regrese. Adquiere el Kit VIP de Desbloqueo (21 Días) por S/ 9.90 y sella tu aura permanentemente.</p>
-                <!-- REEMPLAZA ESTE NÚMERO POR TU WHATSAPP -->
-                <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago" target="_blank">Obtener Kit VIP - S/ 9.90</a>
+                <p class="upsell-hook">⚠️ Este diagnóstico solo revela el <strong>10%</strong> de tu fuga energética.</p>
+                <p class="upsell-text">La verdadera manifestación requiere constancia cuántica. Adquiere el <strong>Kit VIP (21 Días)</strong> y sella tu aura definitivamente antes de que el bloqueo regrese.</p>
+                
+                <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago-gold" target="_blank">OBTENER KIT VIP - S/ 9.90</a>
+                
+                <div class="social-proof-counter">
+                    <span class="dot-pulse"></span> <span id="contador-personas">1734</span> almas sintonizando su frecuencia ahora mismo.
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- Notificación emergente sutil -->
+    <div id="toast-notificacion" class="toast oculto">
+        <span id="toast-texto"></span>
     </div>
 
     <script src="app.js"></script>
