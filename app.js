@@ -120,4 +120,3 @@ setTimeout(() => {
     mostrarToastAleatorio();
     setInterval(mostrarToastAleatorio, 12000);
 }, 6000);
-});
