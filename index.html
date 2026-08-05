@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frecuencia Áurea | Diagnóstico Energético</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-abundancia"> <!-- Fondo por defecto -->
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <img src="assets/Logotipo.jpeg" alt="Frecuencia Áurea" class="logo">
+        
+        <!-- PANTALLA 1: Formulario Inicial -->
+        <div id="pantalla-inicio" class="card">
+            <h1>Sintoniza tu Energía</h1>
+            <p>Descubre qué bloqueo invisible está frenando tu manifestación hoy.</p>
+            
+            <form id="formulario-diagnostico">
+                <label for="nombre">Tu Nombre (o Inicial):</label>
+                <input type="text" id="nombre" required placeholder="Ej. Omar">
+                
+                <label for="area">¿Qué área necesitas desbloquear urgente?</label>
+                <select id="area" required>
+                    <option value="abundancia">💰 Abundancia y Dinero</option>
+                    <option value="amor">❤️ Amor y Relaciones</option>
+                    <option value="salud">🌿 Salud y Vitalidad</option>
+                </select>
+                
+                <button type="submit">Revelar mi diagnóstico gratuito</button>
+            </form>
+        </div>
+
+        <!-- PANTALLA 2: Resultado y Upsell (Oculta al inicio) -->
+        <div id="pantalla-resultado" class="card oculto">
+            <h2>Tu Diagnóstico, <span id="res-nombre"></span></h2>
+            <p id="res-diagnostico" class="texto-diagnostico"></p>
+            
+            <div class="decreto-box">
+                <h3>Tu Decreto de Activación:</h3>
+                <p id="res-decreto"></p>
+                <!-- Reproductor de audio con descarga bloqueada -->
+                <audio id="audio-decreto" controls controlsList="nodownload">
+                    <source id="source-audio" src="" type="audio/mpeg">
+                </audio>
+            </div>
+
+            <div class="upsell-box">
+                <p>⚠️ Tu campo energético requiere un anclaje profundo para evitar que el bloqueo regrese. Adquiere el Kit VIP de Desbloqueo (21 Días) por S/ 9.90 y sella tu aura permanentemente.</p>
+                <!-- REEMPLAZA EL NÚMERO ABAJO CON TU WHATSAPP -->
+                <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago" target="_blank">Obtener Kit VIP - S/ 9.90</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
