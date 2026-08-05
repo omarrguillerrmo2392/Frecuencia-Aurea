@@ -38,7 +38,7 @@ const baseDeDatos = {
     ]
 };
 
-// Lógica de funcionamiento de la aplicación corregida para los nombres de audio
+// Lógica de funcionamiento de la aplicación
 const formulario = document.getElementById('formulario-diagnostico');
 const bodyFondo = document.getElementById('body-fondo');
 
@@ -72,18 +72,14 @@ formulario.addEventListener('submit', function(e) {
     resDecreto.textContent = resultado.decreto;
 
     const numeroAudio = indiceAleatorio + 1;
-    let nombreAudio = "";
     
-    // Concatenación exacta según la nomenclatura de tus archivos subidos
-    if (areaSeleccionada === 'abundancia') {
-        nombreAudio = `Gratuito - Abundancia - Decreto ${numeroAudio}.MP3`;
-    } else if (areaSeleccionada === 'amor') {
-        nombreAudio = `Gratuito - Amor- Decreto ${numeroAudio}.MP3`;
-    } else if (areaSeleccionada === 'salud') {
-        nombreAudio = `Gratuito - Salud- Decreto ${numeroAudio}.MP3`;
-    }
+    // Capitalizar la primera letra del área para que coincida exactamente con el nombre del archivo
+    const areaCapitalizada = areaSeleccionada.charAt(0).toUpperCase() + areaSeleccionada.slice(1);
+    
+    // Nomenclatura unificada y limpia gracias a que estandarizaste los archivos
+    const nombreAudio = `Gratuito - ${areaCapitalizada} - Decreto ${numeroAudio}.MP3`;
 
-    // Codificar espacios para que la URL los lea perfectamente en internet
+    // Codificar espacios para la URL del navegador
     sourceAudio.src = `assets/${encodeURIComponent(nombreAudio)}`;
     audioDecreto.load();
 
