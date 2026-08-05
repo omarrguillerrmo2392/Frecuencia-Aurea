@@ -1,0 +1,73 @@
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+body { 
+    background-color: #050505; color: #ffffff; 
+    min-height: 100vh; display: flex; justify-content: center;
+    background-size: cover; background-position: center; background-attachment: fixed;
+    transition: background-image 0.5s ease;
+}
+
+/* Fondos Dinámicos enlazados a tu carpeta assets */
+.bg-abundancia { background-image: url('assets/Fondo%20para%20Abundancia.jpeg'); }
+.bg-amor { background-image: url('assets/Fondo%20para%20Amor.jpeg'); }
+.bg-salud { background-image: url('assets/Fondo%20para%20Salud.jpeg'); }
+
+.overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: -1;
+}
+.container {
+    width: 100%; max-width: 420px; padding: 20px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.logo { 
+    width: 140px; border-radius: 10px; margin: 15px 0 25px 0; 
+    box-shadow: 0 0 20px rgba(255,215,0,0.15); 
+}
+.card {
+    background: rgba(15, 15, 15, 0.85); border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px; padding: 25px 20px; width: 100%;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+}
+
+h1 { font-size: 1.4rem; color: #f4d03f; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+h2 { font-size: 1.2rem; color: #ffffff; margin-bottom: 15px; }
+p { font-size: 0.95rem; color: #dddddd; margin-bottom: 20px; line-height: 1.5; }
+.texto-diagnostico { font-style: italic; color: #aaaaaa; }
+
+form { display: flex; flex-direction: column; text-align: left; }
+label { font-size: 0.85rem; color: #f4d03f; margin-bottom: 8px; font-weight: bold; }
+input, select {
+    width: 100%; padding: 14px; margin-bottom: 18px; border-radius: 6px;
+    border: 1px solid #333; background: #111; color: #fff; font-size: 1rem;
+}
+input:focus, select:focus { outline: none; border-color: #f4d03f; }
+
+button, .btn-pago {
+    width: 100%; padding: 16px; border-radius: 6px; font-size: 1rem; font-weight: bold;
+    text-transform: uppercase; cursor: pointer; text-align: center; text-decoration: none;
+    display: block; transition: all 0.3s ease; border: none;
+}
+button { background: #f4d03f; color: #111; }
+button:hover { background: #e5c138; box-shadow: 0 0 15px rgba(244, 208, 63, 0.4); }
+
+.oculto { display: none !important; }
+
+.decreto-box { 
+    background: rgba(244, 208, 63, 0.05); border-left: 3px solid #f4d03f; 
+    padding: 15px; margin: 20px 0; border-radius: 4px; text-align: left;
+}
+.decreto-box h3 { font-size: 0.9rem; color: #f4d03f; margin-bottom: 8px; text-transform: uppercase;}
+.decreto-box p { font-size: 1rem; color: #fff; margin-bottom: 10px;}
+audio { width: 100%; height: 40px; }
+
+.upsell-box { 
+    background: rgba(30, 5, 5, 0.8); border: 1px solid #ff4444; 
+    padding: 20px; border-radius: 8px; margin-top: 25px;
+}
+.upsell-box p { color: #ff9999; font-size: 0.9rem; margin-bottom: 15px; font-weight: bold;}
+.btn-pago { background: #d32f2f; color: #fff; border: 1px solid #b71c1c; }
+.btn-pago:hover { background: #c62828; box-shadow: 0 0 20px rgba(211, 47, 47, 0.5); }
