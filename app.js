@@ -51,51 +51,73 @@ const resDecreto = document.getElementById('res-decreto');
 const audioDecreto = document.getElementById('audio-decreto');
 const sourceAudio = document.getElementById('source-audio');
 
-// Evento: Al cambiar el área elegida, cambiamos el fondo de la página
+// Evento: Cambio de fondo
 document.getElementById('area').addEventListener('change', function(e) {
     const areaSeleccionada = e.target.value;
     bodyFondo.className = `bg-${areaSeleccionada}`;
 });
 
-// Evento principal: Al presionar "Revelar mi diagnóstico gratuito"
+// Evento principal: Revelar diagnóstico
 formulario.addEventListener('submit', function(e) {
-    e.preventDefault(); // Evita que la página recargue
+    e.preventDefault();
 
-    // 1. Obtener valores del usuario
     const nombreUsuario = document.getElementById('nombre').value;
     const areaSeleccionada = document.getElementById('area').value;
     
-    // 2. Elegir un número aleatorio entre 0 y 9 (para los 10 decretos)
     const indiceAleatorio = Math.floor(Math.random() * 10);
     const resultado = baseDeDatos[areaSeleccionada][indiceAleatorio];
 
-    // 3. Modificar los textos en pantalla
     resNombre.textContent = nombreUsuario.toUpperCase();
     resDiagnostico.textContent = `"${resultado.diagnostico}"`;
     resDecreto.textContent = resultado.decreto;
 
-    // 4. Configurar el nombre del audio basado en tu convención de archivos (Del 1 al 10)
     const numeroAudio = indiceAleatorio + 1;
     let nombreAudio = "";
-    
-    if (areaSeleccionada === 'abundancia') {
-        nombreAudio = `Gratuito - Abundancia - Decreto ${numeroAudio}.MP3`;
-    } else if (areaSeleccionada === 'amor') {
-        nombreAudio = `Gratuito - Amor- Decreto ${numeroAudio}.MP3`;
-    } else if (areaSeleccionada === 'salud') {
-        nombreAudio = `Gratuito - Salud- Decreto ${numeroAudio}.MP3`;
-    }
+    if (areaSeleccionada === 'abundancia') nombreAudio = `Gratuito - Abundancia - Decreto ${numeroAudio}.MP3`;
+    else if (areaSeleccionada === 'amor') nombreAudio = `Gratuito - Amor- Decreto ${numeroAudio}.MP3`;
+    else if (areaSeleccionada === 'salud') nombreAudio = `Gratuito - Salud- Decreto ${numeroAudio}.MP3`;
 
-    // 5. Cargar el audio en el reproductor
     sourceAudio.src = `assets/${nombreAudio}`;
     audioDecreto.load();
 
-    // 6. Transición de pantallas
     pantallaInicio.classList.add('oculto');
     pantallaResultado.classList.remove('oculto');
     
-    // Reproducir audio automáticamente al mostrar el resultado (si el navegador lo permite)
+    // NOTA: Se eliminó el autoplay para evitar bloqueos del navegador. El usuario dará play.
+});
+
+// Lógica de Prueba Social Falsa (Contador y Popups)
+// 1. Contador que sube aleatoriamente
+let contadorBase = 1734;
+const contadorElement = document.getElementById('contador-personas');
+setInterval(() => {
+    // Sube entre 1 y 3 personas cada ciertos segundos
+    contadorBase += Math.floor(Math.random() * 3) + 1;
+    if(contadorElement) contadorElement.innerText = contadorBase;
+}, 4000);
+
+// 2. Notificaciones Toast (Nombres y áreas aleatorias)
+const nombresToast = ["María L.", "Juan P.", "Andrea C.", "Carlos M.", "Lucía R.", "Jorge T.", "Sofía A."];
+const areasToast = ["Abundancia", "Amor", "Salud"];
+const toastBox = document.getElementById('toast-notificacion');
+const toastTexto = document.getElementById('toast-texto');
+
+function mostrarToastAleatorio() {
+    const nombreAleatorio = nombresToast[Math.floor(Math.random() * nombresToast.length)];
+    const areaAleatoria = areasToast[Math.floor(Math.random() * areasToast.length)];
+    
+    toastTexto.innerHTML = `✨ <strong>${nombreAleatorio}</strong> activó su Kit VIP de ${areaAleatoria}`;
+    toastBox.classList.remove('oculto');
+    
+    // Ocultar después de 3.5 segundos
     setTimeout(() => {
-        audioDecreto.play().catch(e => console.log("Autoplay bloqueado, el usuario debe dar play manual."));
-    }, 500);
+        toastBox.classList.add('oculto');
+    }, 3500);
+}
+
+// Disparar el primer toast a los 6 segundos, y luego cada 12 segundos
+setTimeout(() => {
+    mostrarToastAleatorio();
+    setInterval(mostrarToastAleatorio, 12000);
+}, 6000);
 });
