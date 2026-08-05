@@ -6,7 +6,7 @@
     <title>Frecuencia Áurea | Diagnóstico Energético</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-abundancia"> <!-- Fondo por defecto -->
+<body class="bg-abundancia" id="body-fondo"> 
     <div class="overlay"></div>
     
     <div class="container">
@@ -19,7 +19,10 @@
             
             <form id="formulario-diagnostico">
                 <label for="nombre">Tu Nombre (o Inicial):</label>
-                <input type="text" id="nombre" required placeholder="Ej. Omar">
+                <input type="text" id="nombre" required placeholder="Ej. María">
+                
+                <label for="fecha">Tu Fecha de Nacimiento:</label>
+                <input type="date" id="fecha" required>
                 
                 <label for="area">¿Qué área necesitas desbloquear urgente?</label>
                 <select id="area" required>
@@ -32,7 +35,7 @@
             </form>
         </div>
 
-        <!-- PANTALLA 2: Resultado y Upsell (Oculta al inicio) -->
+        <!-- PANTALLA 2: Resultado y Upsell -->
         <div id="pantalla-resultado" class="card oculto">
             <h2>Tu Diagnóstico, <span id="res-nombre"></span></h2>
             <p id="res-diagnostico" class="texto-diagnostico"></p>
@@ -40,15 +43,16 @@
             <div class="decreto-box">
                 <h3>Tu Decreto de Activación:</h3>
                 <p id="res-decreto"></p>
-                <!-- Reproductor de audio con descarga bloqueada -->
+                <!-- Reproductor de audio -->
                 <audio id="audio-decreto" controls controlsList="nodownload">
                     <source id="source-audio" src="" type="audio/mpeg">
+                    Tu navegador no soporta el reproductor de audio.
                 </audio>
             </div>
 
             <div class="upsell-box">
                 <p>⚠️ Tu campo energético requiere un anclaje profundo para evitar que el bloqueo regrese. Adquiere el Kit VIP de Desbloqueo (21 Días) por S/ 9.90 y sella tu aura permanentemente.</p>
-                <!-- REEMPLAZA EL NÚMERO ABAJO CON TU WHATSAPP -->
+                <!-- REEMPLAZA ESTE NÚMERO POR TU WHATSAPP -->
                 <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago" target="_blank">Obtener Kit VIP - S/ 9.90</a>
             </div>
         </div>
