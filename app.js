@@ -38,7 +38,7 @@ const baseDeDatos = {
     ]
 };
 
-// Lógica de funcionamiento de la aplicación
+// Lógica de funcionamiento de la aplicación corregida para los nombres de audio
 const formulario = document.getElementById('formulario-diagnostico');
 const bodyFondo = document.getElementById('body-fondo');
 
@@ -73,30 +73,32 @@ formulario.addEventListener('submit', function(e) {
 
     const numeroAudio = indiceAleatorio + 1;
     let nombreAudio = "";
-    if (areaSeleccionada === 'abundancia') nombreAudio = `Gratuito - Abundancia - Decreto ${numeroAudio}.MP3`;
-    else if (areaSeleccionada === 'amor') nombreAudio = `Gratuito - Amor- Decreto ${numeroAudio}.MP3`;
-    else if (areaSeleccionada === 'salud') nombreAudio = `Gratuito - Salud- Decreto ${numeroAudio}.MP3`;
+    
+    // Concatenación exacta según la nomenclatura de tus archivos subidos
+    if (areaSeleccionada === 'abundancia') {
+        nombreAudio = `Gratuito - Abundancia - Decreto ${numeroAudio}.MP3`;
+    } else if (areaSeleccionada === 'amor') {
+        nombreAudio = `Gratuito - Amor- Decreto ${numeroAudio}.MP3`;
+    } else if (areaSeleccionada === 'salud') {
+        nombreAudio = `Gratuito - Salud- Decreto ${numeroAudio}.MP3`;
+    }
 
-    sourceAudio.src = `assets/${nombreAudio}`;
+    // Codificar espacios para que la URL los lea perfectamente en internet
+    sourceAudio.src = `assets/${encodeURIComponent(nombreAudio)}`;
     audioDecreto.load();
 
     pantallaInicio.classList.add('oculto');
     pantallaResultado.classList.remove('oculto');
-    
-    // NOTA: Se eliminó el autoplay para evitar bloqueos del navegador. El usuario dará play.
 });
 
 // Lógica de Prueba Social Falsa (Contador y Popups)
-// 1. Contador que sube aleatoriamente
 let contadorBase = 1734;
 const contadorElement = document.getElementById('contador-personas');
 setInterval(() => {
-    // Sube entre 1 y 3 personas cada ciertos segundos
     contadorBase += Math.floor(Math.random() * 3) + 1;
     if(contadorElement) contadorElement.innerText = contadorBase;
 }, 4000);
 
-// 2. Notificaciones Toast (Nombres y áreas aleatorias)
 const nombresToast = ["María L.", "Juan P.", "Andrea C.", "Carlos M.", "Lucía R.", "Jorge T.", "Sofía A."];
 const areasToast = ["Abundancia", "Amor", "Salud"];
 const toastBox = document.getElementById('toast-notificacion');
@@ -109,13 +111,11 @@ function mostrarToastAleatorio() {
     toastTexto.innerHTML = `✨ <strong>${nombreAleatorio}</strong> activó su Kit VIP de ${areaAleatoria}`;
     toastBox.classList.remove('oculto');
     
-    // Ocultar después de 3.5 segundos
     setTimeout(() => {
         toastBox.classList.add('oculto');
     }, 3500);
 }
 
-// Disparar el primer toast a los 6 segundos, y luego cada 12 segundos
 setTimeout(() => {
     mostrarToastAleatorio();
     setInterval(mostrarToastAleatorio, 12000);
