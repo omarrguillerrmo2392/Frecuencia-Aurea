@@ -58,33 +58,80 @@ document.getElementById('area').addEventListener('change', function(e) {
 });
 
 // Evento principal: Revelar diagnóstico
+// Función extra para hacer Fade Out del audio
+function fadeOutAudio(audioElement, duracionMilisegundos) {
+    const pasos = 20;
+    const intervaloTiempo = duracionMilisegundos / pasos;
+    const reduccionVolumen = audioElement.volume / pasos;
+    let fadeInterval = setInterval(() => {
+        if (audioElement.volume > reduccionVolumen) {
+            audioElement.volume -= reduccionVolumen;
+        } else {
+            audioElement.volume = 0;
+            audioElement.pause();
+            clearInterval(fadeInterval);
+        }
+    }, intervaloTiempo);
+}
+
+// Eventos de Pantalla de Carga
+const pantallaCarga = document.getElementById('pantalla-carga');
+const textoCarga = document.getElementById('texto-carga');
+const barraProgreso = document.getElementById('barra-progreso');
+const musicaFondo = document.getElementById('musicaFondo');
+
+// Evento principal: Revelar diagnóstico
 formulario.addEventListener('submit', function(e) {
     e.preventDefault();
 
+    // 1. Iniciar Música de fondo
+    if (musicaFondo.paused) {
+        musicaFondo.volume = 0.7;
+        musicaFondo.play().catch(e => console.log("Navegador bloqueó el autoplay"));
+    }
+
     const nombreUsuario = document.getElementById('nombre').value;
     const areaSeleccionada = document.getElementById('area').value;
-    
     const indiceAleatorio = Math.floor(Math.random() * 10);
     const resultado = baseDeDatos[areaSeleccionada][indiceAleatorio];
 
+    // Preparar contenido oculto
     resNombre.textContent = nombreUsuario.toUpperCase();
     resDiagnostico.textContent = `"${resultado.diagnostico}"`;
     resDecreto.textContent = resultado.decreto;
 
     const numeroAudio = indiceAleatorio + 1;
-    
-    // Capitalizar la primera letra del área para que coincida exactamente con el nombre del archivo
     const areaCapitalizada = areaSeleccionada.charAt(0).toUpperCase() + areaSeleccionada.slice(1);
-    
-    // Nomenclatura unificada y limpia gracias a que estandarizaste los archivos
     const nombreAudio = `Gratuito - ${areaCapitalizada} - Decreto ${numeroAudio}.MP3`;
 
-    // Codificar espacios para la URL del navegador
     sourceAudio.src = `assets/${encodeURIComponent(nombreAudio)}`;
     audioDecreto.load();
 
+    // 2. Lógica del texto con fecha y hora actual
+    const fecha = new Date();
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    let horas = fecha.getHours();
+    let minutos = fecha.getMinutes();
+    minutos = minutos < 10 ? '0' + minutos : minutos; 
+    
+    textoCarga.innerHTML = `${nombreUsuario}, Estamos analizando tu aura hoy ${meses[fecha.getMonth()]} del ${fecha.getFullYear()} a las ${horas}:${minutos}`;
+
+    // 3. Activar pantalla de carga y barra
     pantallaInicio.classList.add('oculto');
-    pantallaResultado.classList.remove('oculto');
+    pantallaCarga.classList.remove('oculto');
+    
+    setTimeout(() => {
+        barraProgreso.style.width = '100%';
+    }, 100);
+
+    // 4. Iniciar reducción de volumen
+    fadeOutAudio(musicaFondo, 5000);
+
+    // 5. Revelar diagnóstico final después de 5 segundos
+    setTimeout(() => {
+        pantallaCarga.classList.add('oculto');
+        pantallaResultado.classList.remove('oculto');
+    }, 5000);
 });
 
 // Lógica de Prueba Social Falsa (Contador y Popups)
