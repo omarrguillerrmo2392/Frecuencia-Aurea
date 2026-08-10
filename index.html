@@ -47,10 +47,11 @@
             <h2>Tu Diagnóstico, <span id="res-nombre"></span></h2>
             <p id="res-diagnostico" class="texto-diagnostico"></p>
             
-            <div class="decreto-box">
-                <span class="mano-animada">👇</span>
+<div class="decreto-box">
                 <h3>Tu Decreto de Activación:</h3>
                 <p id="res-decreto"></p>
+                <!-- La mano ahora está aquí, justo sobre el audio -->
+                <span class="mano-animada">👇</span>
                 <audio id="audio-decreto" controls controlsList="nodownload">
                     <source id="source-audio" src="" type="audio/mpeg">
                     Tu navegador no soporta el reproductor de audio.
@@ -61,14 +62,17 @@
                 <p class="upsell-hook">⚠️ Este diagnóstico solo revela el <strong>10%</strong> de tu fuga energética.</p>
                 <p class="upsell-text">La verdadera manifestación requiere constancia cuántica. Adquiere el <strong>Kit VIP (21 Días)</strong> y sella tu aura definitivamente antes de que el bloqueo regrese.</p>
                 
-                <p style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;"><strong>Constancia</strong></p>
+                <p style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 25px;"><strong>Constancia</strong></p>
                 
-                <div style="position: relative; display: inline-block; width: 100%;">
-                    <img src="descuento-web-90%.png" alt="-90%" style="position: absolute; top: -20px; right: -10px; width: 80px; height: 80px; z-index: 10;">
+                <!-- Contenedor ajustado para el botón y el sello -->
+                <div style="position: relative; display: block; width: 100%; max-width: 350px; margin: 0 auto;">
+                    <!-- El sello de descuento con z-index alto para asegurar que se superponga -->
+                    <img src="descuento-web-90%.png" alt="-90%" style="position: absolute; top: -35px; right: -15px; width: 85px; height: 85px; z-index: 999; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));">
+                    
                     <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago-gold" target="_blank">OBTENER KIT VIP</a>
                 </div>
                 
-                <div class="social-proof-counter">
+                <div class="social-proof-counter" style="margin-top: 25px;">
                     <span class="dot-pulse"></span> <span id="contador-personas">1734</span> almas sintonizando su frecuencia ahora mismo.
                 </div>
             </div>
