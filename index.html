@@ -35,13 +35,20 @@
                 <button type="submit">Revelar mi diagnóstico gratuito</button>
             </form>
         </div>
-
+        <!-- PANTALLA DE CARGA -->
+        <div id="pantalla-carga" class="card oculto">
+            <h2 id="texto-carga" style="color: #f4d03f; font-size: 1.1rem; line-height: 1.5; margin-bottom: 20px;"></h2>
+            <div style="width: 100%; background-color: #222; border-radius: 10px; overflow: hidden; height: 20px;">
+                <div id="barra-progreso" style="width: 0%; height: 100%; background-color: #f4d03f; transition: width 5s linear;"></div>
+            </div>
+        </div>
         <!-- PANTALLA 2: Resultado y Upsell -->
         <div id="pantalla-resultado" class="card oculto">
             <h2>Tu Diagnóstico, <span id="res-nombre"></span></h2>
             <p id="res-diagnostico" class="texto-diagnostico"></p>
             
             <div class="decreto-box">
+                <span class="mano-animada">👇</span>
                 <h3>Tu Decreto de Activación:</h3>
                 <p id="res-decreto"></p>
                 <audio id="audio-decreto" controls controlsList="nodownload">
@@ -54,7 +61,12 @@
                 <p class="upsell-hook">⚠️ Este diagnóstico solo revela el <strong>10%</strong> de tu fuga energética.</p>
                 <p class="upsell-text">La verdadera manifestación requiere constancia cuántica. Adquiere el <strong>Kit VIP (21 Días)</strong> y sella tu aura definitivamente antes de que el bloqueo regrese.</p>
                 
-                <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago-gold" target="_blank">OBTENER KIT VIP - S/ 9.90</a>
+                <p style="text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;"><strong>Constancia</strong></p>
+                
+                <div style="position: relative; display: inline-block; width: 100%;">
+                    <img src="descuento-web-90%.png" alt="-90%" style="position: absolute; top: -20px; right: -10px; width: 80px; height: 80px; z-index: 10;">
+                    <a href="https://wa.me/51939709583?text=Hola,%20quiero%20el%20Kit%20VIP%20de%2021%20Días%20para%20desbloquear%20mi%20energía." class="btn-pago-gold" target="_blank">OBTENER KIT VIP</a>
+                </div>
                 
                 <div class="social-proof-counter">
                     <span class="dot-pulse"></span> <span id="contador-personas">1734</span> almas sintonizando su frecuencia ahora mismo.
